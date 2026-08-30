@@ -64,7 +64,7 @@ export function WhatWeDo() {
                 </div>
 
                 <div className="col-span-12 mt-8 md:col-span-6 md:col-start-7 md:mt-0">
-                  <div className="origin-center scale-[0.99] opacity-90 transition-all duration-500 ease-out group-hover:scale-100 group-hover:opacity-100">
+                  <div className="origin-center scale-[0.99] opacity-90 transition-all duration-500 ease-out group-hover:scale-100 group-hover:opacity-100 group-focus-within:scale-100 group-focus-within:opacity-100">
                     <Placeholder
                       tone={toneByCategory[category.id]}
                       kind={kindByCategory[category.id]}

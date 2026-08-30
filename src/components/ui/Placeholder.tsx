@@ -144,7 +144,7 @@ export function Placeholder({
       </div>
 
       <div className="relative z-10 flex w-full items-end justify-between gap-3 p-4 sm:p-5">
-        <span className="max-w-[70%] font-sans text-[11px] uppercase tracking-[0.08em] opacity-70 sm:text-[12px]">
+        <span className="line-clamp-1 max-w-[70%] font-sans text-[11px] uppercase tracking-[0.08em] opacity-70 sm:text-[12px]">
           {label}
         </span>
         <span className="shrink-0 font-sans text-[11px] tabular-nums uppercase tracking-[0.08em] opacity-50 sm:text-[12px]">
