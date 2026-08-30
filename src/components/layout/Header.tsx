@@ -1,0 +1,126 @@
+"use client";
+
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { cn } from "@/lib/utils";
+import { StartProjectButton } from "@/components/ui/Buttons";
+
+const NAV_LINKS = [
+  { label: "Work", href: "/#work" },
+  { label: "Expertise", href: "/#expertise" },
+  { label: "About", href: "/#about" },
+  { label: "Insights", href: "/#insights" },
+];
+
+export function Header() {
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.style.overflow = menuOpen ? "hidden" : "";
+    return () => {
+      document.documentElement.style.overflow = "";
+    };
+  }, [menuOpen]);
+
+  return (
+    <header className="fixed inset-x-0 top-0 z-50">
+      {/* Decorative bar background lives on its own layer — kept off the
+          <header> element itself, because backdrop-filter on an ancestor
+          would make it the containing block for the fixed mobile menu
+          panel below, collapsing that panel's height to the bar's. */}
+      <div
+        aria-hidden="true"
+        className={cn(
+          "absolute inset-x-0 top-0 h-16 -z-10 transition-colors duration-300 sm:h-20",
+          scrolled || menuOpen
+            ? "bg-[var(--color-paper)]/90 backdrop-blur-sm border-b border-[var(--color-line)]"
+            : "bg-transparent border-b border-transparent"
+        )}
+      />
+      <div className="container-cubs flex h-16 items-center justify-between sm:h-20">
+        <Link
+          href="/"
+          className="font-sans text-[15px] font-medium tracking-[0.06em] text-[var(--color-ink)]"
+          onClick={() => setMenuOpen(false)}
+        >
+          AREEN CUBS
+        </Link>
+
+        <nav className="hidden items-center gap-9 md:flex" aria-label="Primary">
+          {NAV_LINKS.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="link-underline font-sans text-[14px] text-[var(--color-ink-soft)] hover:text-[var(--color-ink)]"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+
+        <div className="hidden md:block">
+          <StartProjectButton
+            variant="outline-dark"
+            className="px-5 py-2.5 text-[12px]"
+          />
+        </div>
+
+        <button
+          type="button"
+          onClick={() => setMenuOpen((v) => !v)}
+          aria-expanded={menuOpen}
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          className="relative z-10 flex h-10 w-10 flex-col items-center justify-center gap-[5px] md:hidden"
+        >
+          <span
+            className={cn(
+              "h-px w-6 bg-[var(--color-ink)] transition-transform duration-300",
+              menuOpen && "translate-y-[3px] rotate-45"
+            )}
+          />
+          <span
+            className={cn(
+              "h-px w-6 bg-[var(--color-ink)] transition-transform duration-300",
+              menuOpen && "-translate-y-[3px] -rotate-45"
+            )}
+          />
+        </button>
+      </div>
+
+      <div
+        className={cn(
+          "fixed inset-x-0 top-16 bottom-0 flex flex-col justify-between bg-[var(--color-paper)] px-6 pb-10 pt-6 transition-[opacity,visibility] duration-300 md:hidden",
+          menuOpen
+            ? "visible opacity-100"
+            : "invisible opacity-0 pointer-events-none"
+        )}
+      >
+        <nav className="flex flex-col gap-1" aria-label="Mobile">
+          {NAV_LINKS.map((link, i) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={() => setMenuOpen(false)}
+              className="border-b border-[var(--color-line)] py-5 font-serif text-[32px] leading-none text-[var(--color-ink)]"
+              style={{ transitionDelay: `${i * 40}ms` }}
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+        <StartProjectButton
+          variant="outline-dark"
+          className="w-full justify-center"
+        />
+      </div>
+    </header>
+  );
+}

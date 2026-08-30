@@ -1,26 +1,194 @@
 @import "tailwindcss";
 
+/* ---------------------------------------------------------------
+   Clear Sans — local font slots.
+   Falls back silently to --font-fallback-sans until real files
+   are dropped into /public/fonts/clear-sans (see README there).
+------------------------------------------------------------------ */
+@font-face {
+  font-family: "Clear Sans";
+  src: url("/fonts/clear-sans/ClearSans-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Clear Sans";
+  src: url("/fonts/clear-sans/ClearSans-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Clear Sans";
+  src: url("/fonts/clear-sans/ClearSans-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Clear Sans";
+  src: url("/fonts/clear-sans/ClearSans-Italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* --- Brand color tokens --- */
+  --color-paper: #e8ebec;
+  --color-paper-dim: #dee2e4;
+  --color-ink: #0c1114;
+  --color-ink-soft: rgba(12, 17, 20, 0.64);
+  --color-ink-faint: rgba(12, 17, 20, 0.38);
+  --color-line: rgba(12, 17, 20, 0.14);
+  --color-line-strong: rgba(12, 17, 20, 0.28);
+
+  --color-primary: #1064d4;
+  --color-primary-ink: #ffffff;
+  --color-secondary: #3382d6;
+  --color-dark: #0a336f;
+  --color-dark-line: rgba(232, 235, 236, 0.18);
+  --color-white: #ffffff;
+
+  /* --- Typography --- */
+  --font-sans: "Clear Sans", var(--font-fallback-sans), "Helvetica Neue",
+    Arial, sans-serif;
+  --font-serif: var(--font-instrument-serif), "Times New Roman", serif;
+
+  /* --- Layout --- */
+  --container-max: 1440px;
+  --container-pad: clamp(1.25rem, 4vw, 3.5rem);
+  --grid-gap: clamp(0.75rem, 1.6vw, 1.5rem);
+
+  /* --- Motion --- */
+  --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 0.32s;
+  --dur-mid: 0.6s;
+  --dur-slow: 0.9s;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-paper: var(--color-paper);
+  --color-paper-dim: var(--color-paper-dim);
+  --color-ink: var(--color-ink);
+  --color-ink-soft: var(--color-ink-soft);
+  --color-ink-faint: var(--color-ink-faint);
+  --color-line: var(--color-line);
+  --color-line-strong: var(--color-line-strong);
+  --color-primary: var(--color-primary);
+  --color-secondary: var(--color-secondary);
+  --color-dark: var(--color-dark);
+  --color-white: var(--color-white);
+
+  --font-sans: var(--font-sans);
+  --font-serif: var(--font-serif);
+
+  --breakpoint-xs: 30rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  border-color: var(--color-line);
+}
+
+html {
+  background: var(--color-paper);
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+::selection {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+/* Editorial link underline: a hairline that grows from the baseline. */
+.link-underline {
+  position: relative;
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  transition: background-size var(--dur-fast) var(--ease-editorial);
+}
+.link-underline:hover,
+.link-underline:focus-visible {
+  background-size: 100% 1px;
+}
+
+.container-cubs {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+}
+
+.grid-12 {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--grid-gap);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Fine diagonal hatch used on placeholder media blocks. */
+.hatch-pattern {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgba(12, 17, 20, 0.06),
+    rgba(12, 17, 20, 0.06) 1px,
+    transparent 1px,
+    transparent 8px
+  );
+}
+
+.hatch-pattern-dark {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgba(232, 235, 236, 0.08),
+    rgba(232, 235, 236, 0.08) 1px,
+    transparent 1px,
+    transparent 8px
+  );
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Offsets in-page anchor targets so the fixed header never covers them. */
+section[id] {
+  scroll-margin-top: 5.5rem;
 }
