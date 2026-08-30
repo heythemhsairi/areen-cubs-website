@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, type Variants } from "framer-motion";
+import { motion, type Variants, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 const easeEditorial = [0.16, 1, 0.3, 1] as const;
@@ -21,12 +21,13 @@ export function Reveal({
   y = 24,
   as = "div",
 }: RevealProps) {
+  const shouldReduceMotion = useReducedMotion();
   const variants: Variants = {
-    hidden: { opacity: 0, y },
+    hidden: { opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : y },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.8, ease: easeEditorial, delay },
+      transition: { duration: shouldReduceMotion ? 0 : 0.8, ease: easeEditorial, delay: shouldReduceMotion ? 0 : delay },
     },
   };
 
@@ -55,14 +56,15 @@ export function RevealLine({
   className?: string;
   delay?: number;
 }) {
+  const shouldReduceMotion = useReducedMotion();
   return (
     <span className={cn("inline-block overflow-hidden align-top", className)}>
       <motion.span
         className="inline-block"
-        initial={{ y: "110%" }}
+        initial={{ y: shouldReduceMotion ? "0%" : "110%" }}
         whileInView={{ y: "0%" }}
         viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
-        transition={{ duration: 0.9, ease: easeEditorial, delay }}
+        transition={{ duration: shouldReduceMotion ? 0 : 0.9, ease: easeEditorial, delay: shouldReduceMotion ? 0 : delay }}
       >
         {children}
       </motion.span>

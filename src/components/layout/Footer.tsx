@@ -3,18 +3,18 @@ import { ArrowLink } from "@/components/ui/Buttons";
 
 export function Footer() {
   return (
-    <footer className="bg-[var(--color-dark)] text-white">
+    <footer className="bg-[var(--color-primary)] text-white">
       <div className="container-cubs grid-12 py-16 sm:py-20">
         <div className="col-span-12 mb-12 md:col-span-5 md:mb-0">
           <p className="font-sans text-[15px] font-medium tracking-[0.06em]">
             AREEN CUBS
           </p>
           <p className="mt-4 max-w-xs font-sans text-[15px] leading-[1.6] text-white/60">
-            Independent creative agency. Strategy, creative and production
-            for brands worth remembering.
+            Strategy, creative and production for brands that want every
+            piece of work to have a reason to exist.
           </p>
           <ArrowLink
-            href="/#start-a-project"
+            href="/start-a-project"
             tone="paper"
             className="mt-6 text-white"
           >
@@ -28,26 +28,26 @@ export function Footer() {
           </p>
           <ul className="flex flex-col gap-2.5 font-sans text-[15px]">
             <li>
-              <Link href="/#work" className="link-underline text-white/85">
+              <Link href="/work" className="link-underline text-white/85">
                 Work
               </Link>
             </li>
             <li>
               <Link
-                href="/#expertise"
+                href="/expertise"
                 className="link-underline text-white/85"
               >
                 Expertise
               </Link>
             </li>
             <li>
-              <Link href="/#about" className="link-underline text-white/85">
-                About
+              <Link href="/studio" className="link-underline text-white/85">
+                Studio
               </Link>
             </li>
             <li>
               <Link
-                href="/#insights"
+                href="/insights"
                 className="link-underline text-white/85"
               >
                 Insights
@@ -67,21 +67,12 @@ export function Footer() {
                 hello@areencubs.com
               </a>
             </li>
-            <li>
-              <a
-                href="https://instagram.com"
-                className="link-underline"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Instagram
-              </a>
-            </li>
+            <li className="text-white/55">Social links pending</li>
           </ul>
         </div>
       </div>
 
-      <div className="border-t border-[var(--color-dark-line)]">
+      <div className="border-t border-white/20">
         <div className="container-cubs flex flex-col gap-2 py-6 font-sans text-[12px] text-white/45 sm:flex-row sm:items-center sm:justify-between">
           <span>© {new Date().getFullYear()} Areen Cubs. All rights reserved.</span>
           <span>Independent Creative Agency — Tunisia</span>

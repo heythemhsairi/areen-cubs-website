@@ -6,10 +6,10 @@ import { cn } from "@/lib/utils";
 import { StartProjectButton } from "@/components/ui/Buttons";
 
 const NAV_LINKS = [
-  { label: "Work", href: "/#work" },
-  { label: "Expertise", href: "/#expertise" },
-  { label: "About", href: "/#about" },
-  { label: "Insights", href: "/#insights" },
+  { label: "Work", href: "/work" },
+  { label: "Expertise", href: "/expertise" },
+  { label: "Studio", href: "/studio" },
+  { label: "Insights", href: "/insights" },
 ];
 
 export function Header() {
@@ -48,7 +48,7 @@ export function Header() {
       <div className="container-cubs flex h-16 items-center justify-between sm:h-20">
         <Link
           href="/"
-          className="font-sans text-[15px] font-medium tracking-[0.06em] text-[var(--color-ink)]"
+          className="font-sans text-[15px] font-bold tracking-[0.08em] text-[var(--color-dark)]"
           onClick={() => setMenuOpen(false)}
         >
           AREEN CUBS
@@ -59,7 +59,7 @@ export function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="link-underline font-sans text-[14px] text-[var(--color-ink-soft)] hover:text-[var(--color-ink)]"
+              className="link-underline font-sans text-[14px] text-[var(--color-ink-soft)] hover:text-[var(--color-primary)]"
             >
               {link.label}
             </Link>
@@ -68,7 +68,7 @@ export function Header() {
 
         <div className="hidden md:block">
           <StartProjectButton
-            variant="outline-dark"
+            variant="solid"
             className="px-5 py-2.5 text-[12px]"
           />
         </div>
@@ -117,7 +117,7 @@ export function Header() {
           ))}
         </nav>
         <StartProjectButton
-          variant="outline-dark"
+          variant="solid"
           className="w-full justify-center"
         />
       </div>

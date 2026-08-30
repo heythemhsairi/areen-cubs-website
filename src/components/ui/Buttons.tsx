@@ -8,7 +8,7 @@ interface CtaButtonProps {
   className?: string;
 }
 
-const START_PROJECT_HREF = "/#start-a-project";
+const START_PROJECT_HREF = "/start-a-project";
 
 function ArrowIcon({ className }: { className?: string }) {
   return (
@@ -42,7 +42,7 @@ export function CtaButton({
 }: CtaButtonProps) {
   const styles = {
     solid:
-      "bg-[var(--color-ink)] text-[var(--color-paper)] border border-[var(--color-ink)] hover:bg-transparent hover:text-[var(--color-ink)]",
+      "bg-[var(--color-primary)] text-white border border-[var(--color-primary)] hover:bg-[var(--color-dark)] hover:border-[var(--color-dark)]",
     "outline-dark":
       "bg-transparent text-[var(--color-ink)] border border-[var(--color-ink)] hover:bg-[var(--color-ink)] hover:text-[var(--color-paper)]",
     "outline-light":
@@ -53,7 +53,7 @@ export function CtaButton({
     <Link
       href={href}
       className={cn(
-        "group inline-flex items-center gap-2.5 px-6 py-3.5 font-sans text-[14px] uppercase tracking-[0.08em] transition-colors duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]",
+        "group inline-flex min-h-12 items-center gap-2.5 px-6 py-3.5 font-sans text-[13px] font-medium uppercase tracking-[0.09em] transition-colors duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]",
         styles[variant],
         className
       )}
@@ -94,7 +94,7 @@ export function ArrowLink({
       href={href}
       className={cn(
         "link-underline group inline-flex items-center gap-2 font-sans text-[15px] tracking-[0.01em]",
-        tone === "ink" ? "text-[var(--color-ink)]" : "text-white",
+        tone === "ink" ? "text-[var(--color-dark)]" : "text-white",
         className
       )}
     >

@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
-import { Instrument_Serif, Inter } from "next/font/google";
+import { Instrument_Serif } from "next/font/google";
+import "@fontsource/clear-sans/400.css";
+import "@fontsource/clear-sans/500.css";
+import "@fontsource/clear-sans/700.css";
 import "./globals.css";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
 
 const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
@@ -10,17 +15,12 @@ const instrumentSerif = Instrument_Serif({
   display: "swap",
 });
 
-// Stand-in for Clear Sans until the licensed files are dropped into
-// /public/fonts/clear-sans — see the README there.
-const fallbackSans = Inter({
-  subsets: ["latin"],
-  variable: "--font-fallback-sans",
-  display: "swap",
-});
-
 export const metadata: Metadata = {
-  metadataBase: new URL("https://areencubs.com"),
-  title: "Areen Cubs — Independent Creative Agency",
+  metadataBase: new URL("https://areen-cubs-website.vercel.app"),
+  title: {
+    default: "Areen Cubs — Independent Creative Agency",
+    template: "%s — Areen Cubs",
+  },
   description:
     "Areen Cubs is an independent creative agency. We help brands decide what to say, how to look, and what's worth producing — then make it.",
   openGraph: {
@@ -39,9 +39,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${instrumentSerif.variable} ${fallbackSans.variable}`}
+      className={instrumentSerif.variable}
     >
-      <body>{children}</body>
+      <body>
+        <Header />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }
