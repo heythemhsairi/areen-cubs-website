@@ -10,34 +10,36 @@ import { HeroMedia } from "@/components/sections/HeroMedia";
 
 export function HomeHero() {
   return (
-    <section className="hero-stage relative min-h-[100svh] overflow-hidden bg-[var(--color-paper)] pt-16 sm:pt-20">
-      <div className="hero-media">
-        <HeroMedia />
-      </div>
+    <section className="hero-stage bg-[var(--color-paper)]">
+      <div className="hero-canvas">
+        <div className="hero-media">
+          <HeroMedia />
+        </div>
 
-      <div className="hero-copy container-cubs relative z-10">
-        <Reveal>
-          <p className="eyebrow">Independent Creative Agency — Tunisia</p>
-        </Reveal>
-        <Reveal delay={0.04}>
-          <h1 className="hero-heading text-[var(--color-dark)]">
-            <span className="block font-sans">Make something</span>
-            <span className="serif-accent block text-[var(--color-primary)]">
-              people remember.
-            </span>
-          </h1>
-        </Reveal>
-        <Reveal delay={0.08}>
-          <p className="hero-support font-sans text-[var(--color-ink-soft)]">
-            We help brands figure out what to say, how to look, and how to make
-            people care.
-          </p>
-        </Reveal>
-        <Reveal delay={0.12}>
-          <ArrowLink href="/work" className="hero-cta">
-            See our work
-          </ArrowLink>
-        </Reveal>
+        <div className="hero-copy">
+          <Reveal>
+            <p className="hero-eyebrow">Independent Creative Agency — Tunisia</p>
+          </Reveal>
+          <Reveal delay={0.04}>
+            <h1 className="hero-heading text-[var(--color-dark)]">
+              <span className="block font-sans">Make something</span>
+              <span className="serif-accent block text-[var(--color-primary)]">
+                people remember.
+              </span>
+            </h1>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <p className="hero-support font-sans text-[var(--color-ink-soft)]">
+              We help brands figure out what to say, how to look, and how to
+              make people care.
+            </p>
+          </Reveal>
+          <Reveal delay={0.12}>
+            <ArrowLink href="/work" className="hero-cta">
+              See our work
+            </ArrowLink>
+          </Reveal>
+        </div>
       </div>
     </section>
   );

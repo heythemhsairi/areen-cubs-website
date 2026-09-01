@@ -51,7 +51,7 @@ export function Header() {
             : "bg-transparent border-b border-transparent"
         )}
       />
-      <div className="container-cubs flex h-16 items-center justify-between sm:h-20">
+      <div className="container-cubs site-header-shell flex h-16 items-center justify-between sm:h-20">
         <Link
           href="/"
           className="block"
