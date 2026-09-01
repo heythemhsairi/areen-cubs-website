@@ -17,6 +17,9 @@ const instrumentSerif = Instrument_Serif({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://areen-cubs-website.vercel.app"),
+  icons: {
+    icon: "/brand/areen-cubs-logo-mark.svg",
+  },
   title: {
     default: "Areen Cubs — Independent Creative Agency",
     template: "%s — Areen Cubs",
@@ -42,6 +45,11 @@ export default function RootLayout({
       className={instrumentSerif.variable}
     >
       <body>
+        <div
+          data-scroll-sentinel
+          aria-hidden="true"
+          className="absolute left-0 top-0 h-px w-px"
+        />
         <Header />
         {children}
         <Footer />

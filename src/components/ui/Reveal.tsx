@@ -23,7 +23,9 @@ export function Reveal({
 }: RevealProps) {
   const shouldReduceMotion = useReducedMotion();
   const variants: Variants = {
-    hidden: { opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : y },
+    // Keep the server and first client render identical. Reduced-motion users
+    // still move from this state to `visible`, but with a zero-duration change.
+    hidden: { opacity: 0, y },
     visible: {
       opacity: 1,
       y: 0,
@@ -61,7 +63,7 @@ export function RevealLine({
     <span className={cn("inline-block overflow-hidden align-top", className)}>
       <motion.span
         className="inline-block"
-        initial={{ y: shouldReduceMotion ? "0%" : "110%" }}
+        initial={{ y: "110%" }}
         whileInView={{ y: "0%" }}
         viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
         transition={{ duration: shouldReduceMotion ? 0 : 0.9, ease: easeEditorial, delay: shouldReduceMotion ? 0 : delay }}

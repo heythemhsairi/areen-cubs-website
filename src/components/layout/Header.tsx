@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { StartProjectButton } from "@/components/ui/Buttons";
+import { BrandLogo } from "@/components/brand/BrandLogo";
 
 const NAV_LINKS = [
   { label: "Work", href: "/work" },
@@ -17,10 +18,15 @@ export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const sentinel = document.querySelector("[data-scroll-sentinel]");
+    if (!sentinel) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setScrolled(!entry.isIntersecting),
+      { rootMargin: "-12px 0px 0px" }
+    );
+    observer.observe(sentinel);
+    return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
@@ -48,10 +54,14 @@ export function Header() {
       <div className="container-cubs flex h-16 items-center justify-between sm:h-20">
         <Link
           href="/"
-          className="font-sans text-[15px] font-bold tracking-[0.08em] text-[var(--color-dark)]"
+          className="block"
           onClick={() => setMenuOpen(false)}
+          aria-label="Areen Cubs home"
         >
-          AREEN CUBS
+          <BrandLogo
+            priority
+            className="h-[52px] w-[156px] sm:h-[56px] sm:w-[168px]"
+          />
         </Link>
 
         <nav className="hidden items-center gap-9 md:flex" aria-label="Primary">

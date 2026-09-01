@@ -1,14 +1,15 @@
 import Link from "next/link";
 import { ArrowLink } from "@/components/ui/Buttons";
+import { BrandLogo } from "@/components/brand/BrandLogo";
 
 export function Footer() {
   return (
     <footer className="bg-[var(--color-primary)] text-white">
       <div className="container-cubs grid-12 py-16 sm:py-20">
         <div className="col-span-12 mb-12 md:col-span-5 md:mb-0">
-          <p className="font-sans text-[15px] font-medium tracking-[0.06em]">
-            AREEN CUBS
-          </p>
+          <div className="inline-flex bg-[var(--color-paper)] px-4 py-2.5">
+            <BrandLogo className="h-[68px] w-[204px]" />
+          </div>
           <p className="mt-4 max-w-xs font-sans text-[15px] leading-[1.6] text-white/60">
             Strategy, creative and production for brands that want every
             piece of work to have a reason to exist.

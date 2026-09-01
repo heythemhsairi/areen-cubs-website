@@ -245,3 +245,103 @@ main {
 section[id] {
   scroll-margin-top: 5.5rem;
 }
+
+/* Official logo files include their original square artboards. These wrappers
+   crop only the empty artboard while keeping the supplied artwork unchanged. */
+.brand-logo {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  flex: none;
+}
+
+.brand-logo__image {
+  position: absolute;
+  max-width: none;
+}
+
+.brand-logo--horizontal .brand-logo__image {
+  inset: -126% auto auto -15%;
+  width: 130%;
+  height: auto;
+}
+
+.brand-logo--vertical .brand-logo__image {
+  inset: -42% auto auto -14%;
+  width: 129%;
+  height: auto;
+}
+
+.brand-logo--mark .brand-logo__image {
+  inset: -30% auto auto -30%;
+  width: 160%;
+  height: auto;
+}
+
+.hero-media {
+  position: absolute;
+  inset: 5rem 0 0;
+  z-index: 0;
+}
+
+.hero-copy {
+  padding-top: clamp(1.5rem, 4.5vh, 3.5rem);
+}
+
+.hero-heading {
+  margin-top: clamp(0.75rem, 1.6vh, 1.4rem);
+  font-size: clamp(3.25rem, 5.6vw, 6.6rem);
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  line-height: 0.84;
+}
+
+.hero-support {
+  margin-top: clamp(1.1rem, 2.5vh, 2rem);
+  max-width: 31rem;
+  font-size: clamp(1rem, 1.35vw, 1.25rem);
+  line-height: 1.45;
+}
+
+.hero-cta {
+  margin-top: clamp(1.2rem, 2.7vh, 2rem);
+}
+
+@media (min-width: 768px) {
+  .hero-copy {
+    width: min(50%, 46rem);
+    margin-left: 35.5%;
+    padding-inline: 0;
+    padding-top: clamp(3.5rem, 10vh, 7rem);
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-stage {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero-copy {
+    order: 1;
+    padding-top: clamp(2.25rem, 6vh, 4rem);
+  }
+
+  .hero-heading {
+    font-size: clamp(2.75rem, 11.3vw, 2.9rem);
+    line-height: 0.88;
+  }
+
+  .hero-support {
+    max-width: 23rem;
+  }
+
+  .hero-media {
+    position: relative;
+    inset: auto;
+    order: 2;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    margin-block: auto 1.25rem;
+  }
+}

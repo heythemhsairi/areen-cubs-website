@@ -1,35 +1,44 @@
 import Link from "next/link";
-import { ArrowLink, StartProjectButton } from "@/components/ui/Buttons";
+import { ArrowLink } from "@/components/ui/Buttons";
 import { ProjectVisual } from "@/components/ui/ProjectVisual";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { projects } from "@/data/projects";
 import { insights } from "@/data/insights";
 import { serviceCategories } from "@/data/services";
+import { HeroMedia } from "@/components/sections/HeroMedia";
 
 export function HomeHero() {
   return (
-    <section className="page-pad pb-20 sm:pb-28">
-      <div className="container-cubs">
-        <Reveal><p className="eyebrow">Independent Creative Agency — Tunisia</p></Reveal>
-        <div className="mt-7 grid-12">
-          <Reveal className="col-span-12 lg:col-span-10">
-            <h1 className="display-xl text-[var(--color-dark)]">Make something<br /><span className="serif-accent text-[var(--color-primary)]">people remember.</span></h1>
-          </Reveal>
-        </div>
-        <div className="mt-10 grid-12 items-end sm:mt-14">
-          <Reveal delay={0.08} className="col-span-12 md:col-span-6 lg:col-span-5">
-            <p className="max-w-xl font-sans text-[19px] leading-[1.5] text-[var(--color-ink-soft)] sm:text-[22px]">We help brands figure out what to say, how to look, and how to make people care.</p>
-          </Reveal>
-          <Reveal delay={0.14} className="col-span-12 mt-7 flex flex-wrap items-center gap-7 md:col-span-6 md:mt-0 md:justify-end">
-            <ArrowLink href="/work">See our work</ArrowLink>
-            <StartProjectButton />
-          </Reveal>
-        </div>
+    <section className="hero-stage relative min-h-[100svh] overflow-hidden bg-[var(--color-paper)] pt-16 sm:pt-20">
+      <div className="hero-media">
+        <HeroMedia />
       </div>
-      <Reveal delay={0.18} className="container-cubs mt-16 sm:mt-20">
-        <ProjectVisual kind="roc" client="ROC Athletic" index="Featured / 01" />
-      </Reveal>
+
+      <div className="hero-copy container-cubs relative z-10">
+        <Reveal>
+          <p className="eyebrow">Independent Creative Agency — Tunisia</p>
+        </Reveal>
+        <Reveal delay={0.04}>
+          <h1 className="hero-heading text-[var(--color-dark)]">
+            <span className="block font-sans">Make something</span>
+            <span className="serif-accent block text-[var(--color-primary)]">
+              people remember.
+            </span>
+          </h1>
+        </Reveal>
+        <Reveal delay={0.08}>
+          <p className="hero-support font-sans text-[var(--color-ink-soft)]">
+            We help brands figure out what to say, how to look, and how to make
+            people care.
+          </p>
+        </Reveal>
+        <Reveal delay={0.12}>
+          <ArrowLink href="/work" className="hero-cta">
+            See our work
+          </ArrowLink>
+        </Reveal>
+      </div>
     </section>
   );
 }
