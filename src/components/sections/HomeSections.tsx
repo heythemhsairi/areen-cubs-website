@@ -7,6 +7,7 @@ import { projects } from "@/data/projects";
 import { insights } from "@/data/insights";
 import { serviceCategories } from "@/data/services";
 import { HeroMedia } from "@/components/sections/HeroMedia";
+import { HeroNavigation } from "@/components/sections/HeroNavigation";
 
 export function HomeHero() {
   return (
@@ -16,9 +17,11 @@ export function HomeHero() {
           <HeroMedia />
         </div>
 
+        <HeroNavigation />
+
         <div className="hero-copy">
           <Reveal>
-            <p className="hero-eyebrow">Independent Creative Agency — Tunisia</p>
+            <p className="hero-eyebrow">Independent Creative Agency - Tunisia</p>
           </Reveal>
           <Reveal delay={0.04}>
             <h1 className="hero-heading text-[var(--color-dark)]">

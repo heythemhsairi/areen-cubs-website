@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { StartProjectButton } from "@/components/ui/Buttons";
@@ -14,6 +15,7 @@ const NAV_LINKS = [
 ];
 
 export function Header() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -35,6 +37,8 @@ export function Header() {
       document.documentElement.style.overflow = "";
     };
   }, [menuOpen]);
+
+  if (pathname === "/") return null;
 
   return (
     <header className="fixed inset-x-0 top-0 z-50">
